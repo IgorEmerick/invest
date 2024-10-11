@@ -1,0 +1,11 @@
+version: 'latest'
+
+services:
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+    ports:
+      - 27017:27017
