@@ -6,6 +6,11 @@ import {
 } from '../schemas/bodies/createUserBodySchema';
 import { createUserResponseSchema } from '../schemas/responses/createUserResponseSchema';
 import { IRouter } from '../../../../shared/infra/http/routes/models/IRouter';
+import {
+  authenticateUserBodySchema,
+  AuthenticateUserBodyType,
+} from '../schemas/bodies/authenticateUserBodySchema';
+import { authenticateUserResponseSchema } from '../schemas/responses/authenticateUserResponseSchema';
 
 export class UserRouter implements IRouter {
   constructor(private userHandler: UserHandler) {}
@@ -21,6 +26,18 @@ export class UserRouter implements IRouter {
         },
       },
       this.userHandler.create.bind(this.userHandler),
+    );
+
+    app.post<{ Body: AuthenticateUserBodyType }>(
+      '/authenticate',
+      {
+        schema: {
+          summary: 'Authenticate user.',
+          body: authenticateUserBodySchema,
+          response: authenticateUserResponseSchema,
+        },
+      },
+      this.userHandler.authenticate.bind(this.userHandler),
     );
   }
 }
