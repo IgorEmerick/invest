@@ -11,6 +11,6 @@ export const mongoDataSource = new DataSource({
   synchronize: true,
   entities:
     process.env.NODE_ENV === 'dev'
-      ? ['./src/modules/**/infra/database/entities/*.ts']
-      : ['./dist/modules/**/infra/database/entities/*.js'],
+      ? ['./src/module/infra/database/entities/*.ts']
+      : ['./dist/module/infra/database/entities/*.js'],
 });

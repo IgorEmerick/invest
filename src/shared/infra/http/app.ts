@@ -1,6 +1,8 @@
 import fastifySwagger = require('@fastify/swagger');
 import fastifySwaggerUi = require('@fastify/swagger-ui');
 import * as fastify from 'fastify';
+import { container } from '../containers';
+import { IRouter } from './routes/models/IRouter';
 
 const app = fastify({
   trustProxy: true,
@@ -37,5 +39,9 @@ app.register(fastifySwaggerUi, {
   routePrefix: '/documentation',
   staticCSP: true,
 });
+
+const userRouter = container.resolve<IRouter>('userRouter');
+
+app.register(userRouter.route.bind(userRouter), { prefix: '/users' });
 
 export { app };
