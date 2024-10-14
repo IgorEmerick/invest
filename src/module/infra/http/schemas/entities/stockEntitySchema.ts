@@ -11,4 +11,5 @@ export const stockEntitySchema = Type.Object({
   price: Type.Number(),
   dividend: Type.Optional(Type.Array(dividendEntitySchema)),
   dividend_yield: Type.Optional(Type.Number()),
+  leverate: Type.Number(),
 });

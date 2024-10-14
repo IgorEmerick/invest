@@ -13,6 +13,7 @@ export class StockService {
     price,
     type,
     dividends,
+    leverage,
   }: CreateStockRequest): Promise<Stock> {
     const stock = await this.stockRepository.findByCode(code);
 
@@ -29,6 +30,7 @@ export class StockService {
       type,
       dividends,
       dividend_yield: dividendYield,
+      leverage,
     });
   }
 }

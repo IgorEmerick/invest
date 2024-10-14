@@ -37,4 +37,7 @@ export class Stock {
 
   @Column({ type: 'float' })
   dividend_yield: number;
+
+  @Column({ type: 'float', default: 0 })
+  leverage: number;
 }

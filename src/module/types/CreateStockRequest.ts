@@ -6,4 +6,5 @@ export type CreateStockRequest = {
   code: string;
   price: number;
   dividends?: Dividend[];
+  leverage: number;
 };
