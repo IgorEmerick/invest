@@ -20,6 +20,6 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: string): Promise<User> {
-    return this.ormRepository.findOneBy({ id });
+    return this.ormRepository.findOneBy(id);
   }
 }

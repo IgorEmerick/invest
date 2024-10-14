@@ -18,6 +18,8 @@ export class JwtTokenProvider implements ITokenProvider {
     try {
       return verify(token, publicKey, { algorithms: ['RS256'] }) as T;
     } catch (error) {
+      console.error('JwtTokenProvider.decodeToken.error:', error);
+
       return undefined;
     }
   }
