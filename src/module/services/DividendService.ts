@@ -18,7 +18,15 @@ export class DividendService {
 
     if (!stock.dividends) stock.dividends = [];
 
-    stock.dividends.push({ payment_date, reference_date, value });
+    const dividend = stock.dividends.find(
+      item =>
+        item.payment_date === payment_date ||
+        item.reference_date === reference_date,
+    );
+
+    if (dividend)
+      Object.assign(dividend, { payment_date, reference_date, value });
+    else stock.dividends.push({ payment_date, reference_date, value });
 
     stock.dividend_yield = await calculateDividendYield({
       dividends: stock.dividends,
