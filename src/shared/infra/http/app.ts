@@ -40,18 +40,20 @@ app.register(fastifySwaggerUi, {
   staticCSP: true,
 });
 
-const dividendRouter = container.resolve<IRouter>('dividendRouter');
+// APP ROUTES
 
+const dividendRouter = container.resolve<IRouter>('dividendRouter');
 app.register(dividendRouter.route.bind(dividendRouter), {
   prefix: '/dividends',
 });
 
-const stockRouter = container.resolve<IRouter>('stockRouter');
+const resultRouter = container.resolve<IRouter>('resultRouter');
+app.register(resultRouter.route.bind(resultRouter), { prefix: '/results' });
 
+const stockRouter = container.resolve<IRouter>('stockRouter');
 app.register(stockRouter.route.bind(stockRouter), { prefix: '/stocks' });
 
 const userRouter = container.resolve<IRouter>('userRouter');
-
 app.register(userRouter.route.bind(userRouter), { prefix: '/users' });
 
 export { app };

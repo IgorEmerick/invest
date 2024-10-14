@@ -1,11 +1,11 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { DividendService } from '../../../services/DividendService';
 import { DividendEntityType } from '../schemas/entities/dividendEntitySchema';
-import { CreateDividendParamsType } from '../schemas/params/createDividendParamsSchema';
+import { CreateStockMetricParamsType } from '../schemas/params/createStockMetricParamsSchema';
 
 interface ICreateRequest extends FastifyRequest {
   body: DividendEntityType;
-  params: CreateDividendParamsType;
+  params: CreateStockMetricParamsType;
 }
 
 export class DividendHandler {
