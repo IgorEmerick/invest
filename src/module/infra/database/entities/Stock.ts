@@ -34,4 +34,7 @@ export class Stock {
 
   @Column(() => Dividend)
   dividends: Dividend[];
+
+  @Column({ type: 'float' })
+  dividend_yield: number;
 }
