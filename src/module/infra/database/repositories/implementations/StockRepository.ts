@@ -15,6 +15,10 @@ export class StockRepository implements IStockRepository {
     return this.ormRepository.save(stock);
   }
 
+  async update(request: Stock): Promise<Stock> {
+    return this.ormRepository.save(request);
+  }
+
   async findByCode(code: string): Promise<Stock> {
     return this.ormRepository.findOneBy({ code });
   }

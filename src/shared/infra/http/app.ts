@@ -40,6 +40,12 @@ app.register(fastifySwaggerUi, {
   staticCSP: true,
 });
 
+const dividendRouter = container.resolve<IRouter>('dividendRouter');
+
+app.register(dividendRouter.route.bind(dividendRouter), {
+  prefix: '/dividends',
+});
+
 const stockRouter = container.resolve<IRouter>('stockRouter');
 
 app.register(stockRouter.route.bind(stockRouter), { prefix: '/stocks' });

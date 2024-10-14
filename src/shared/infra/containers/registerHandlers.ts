@@ -1,6 +1,7 @@
 import { asClass, AwilixContainer } from 'awilix';
 import { UserHandler } from '../../../module/infra/http/handlers/UserHandler';
 import { StockHandler } from '../../../module/infra/http/handlers/StockHandler';
+import { DividendHandler } from '../../../module/infra/http/handlers/DividendHandler';
 
 export function registerHandlers(container: AwilixContainer): void {
   container.register(
@@ -11,5 +12,10 @@ export function registerHandlers(container: AwilixContainer): void {
   container.register(
     'stockHandler',
     asClass(StockHandler, { lifetime: 'SINGLETON' }),
+  );
+
+  container.register(
+    'dividendHandler',
+    asClass(DividendHandler, { lifetime: 'SINGLETON' }),
   );
 }

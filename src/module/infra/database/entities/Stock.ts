@@ -6,6 +6,7 @@ import {
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Dividend } from './Dividend';
 
 @Entity('stocks')
 export class Stock {
@@ -30,4 +31,7 @@ export class Stock {
 
   @Column({ type: 'float' })
   price: number;
+
+  @Column(() => Dividend)
+  dividends: Dividend[];
 }
