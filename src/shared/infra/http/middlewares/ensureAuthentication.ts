@@ -23,15 +23,11 @@ export async function ensureAuthentication({
 
   const payload = await jwtTokenProvider.decodeToken<{ id: string }>(token);
 
-  console.log('payload:', payload);
-
   if (!payload) throw new HttpError(401, 'Unauthorized');
 
   const userRepository = container.resolve<IUserRepository>('userRepository');
 
   const user = await userRepository.findById(payload.id);
-
-  console.log('user:', user);
 
   if (!user) throw new HttpError(401, 'Unauthorized');
 }

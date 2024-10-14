@@ -10,9 +10,9 @@ import {
   CreateDividendParamsType,
 } from '../schemas/params/createDividendParamsSchema';
 import {
-  createDividendBodySchema,
-  CreateDividendBodyType,
-} from '../schemas/bodies/createDividendBodySchema';
+  dividendEntitySchema,
+  DividendEntityType,
+} from '../schemas/entities/dividendEntitySchema';
 import { ensureAuthentication } from '../../../../shared/infra/http/middlewares/ensureAuthentication';
 
 export class DividendRouter implements IRouter {
@@ -22,7 +22,7 @@ export class DividendRouter implements IRouter {
     app.post<{
       Headers: AuthorizationHeaderType;
       Params: CreateDividendParamsType;
-      Body: CreateDividendBodyType;
+      Body: DividendEntityType;
     }>(
       '/:stock_code',
       {
@@ -30,7 +30,7 @@ export class DividendRouter implements IRouter {
           summary: 'Create dividend',
           headers: authorizationHeaderSchema,
           params: createDividendParamsSchema,
-          body: createDividendBodySchema,
+          body: dividendEntitySchema,
         },
         preHandler: [ensureAuthentication],
       },

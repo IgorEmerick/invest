@@ -13,8 +13,6 @@ export class DividendService {
   }: CreateDividendRequest): Promise<void> {
     const stock = await this.stockRepository.findByCode(stock_code);
 
-    console.log('stock:', stock);
-
     if (!stock) throw new HttpError(400, 'Stock not found');
 
     if (!stock.dividends) stock.dividends = [];

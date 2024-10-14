@@ -1,4 +1,5 @@
 import { Type } from '@sinclair/typebox';
+import { dividendEntitySchema } from './dividendEntitySchema';
 
 export const stockEntitySchema = Type.Object({
   id: Type.String(),
@@ -8,4 +9,5 @@ export const stockEntitySchema = Type.Object({
   name: Type.String(),
   code: Type.String(),
   price: Type.Number(),
+  dividend: Type.Optional(Type.Array(dividendEntitySchema)),
 });

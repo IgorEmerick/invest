@@ -11,11 +11,12 @@ export class StockService {
     name,
     price,
     type,
+    dividends,
   }: CreateStockRequest): Promise<Stock> {
     const stock = await this.stockRepository.findByCode(code);
 
     if (stock) throw new HttpError(400, 'Stock already exists');
 
-    return this.stockRepository.create({ code, name, price, type });
+    return this.stockRepository.create({ code, name, price, type, dividends });
   }
 }
