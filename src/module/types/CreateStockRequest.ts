@@ -1,4 +1,5 @@
 import { Dividend } from '../infra/database/entities/Dividend';
+import { CreateResultRequest } from './CreateResultRequest';
 
 export type CreateStockRequest = {
   type: string;
@@ -7,4 +8,5 @@ export type CreateStockRequest = {
   price: number;
   dividends?: Dividend[];
   leverage: number;
+  results?: CreateResultRequest[];
 };

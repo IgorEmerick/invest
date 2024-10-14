@@ -10,7 +10,7 @@ export class StockHandler {
   constructor(private stockService: StockService) {}
 
   async create({ body }: ICreateRequest, reply: FastifyReply): Promise<void> {
-    const { dividends } = body;
+    const { dividends, results } = body;
 
     const formattedDividends = dividends
       ? dividends.map(dividend => ({
@@ -20,9 +20,17 @@ export class StockHandler {
         }))
       : undefined;
 
+    const formattedResults = results
+      ? results.map(result => ({
+          ...result,
+          reference_date: new Date(result.reference_date),
+        }))
+      : undefined;
+
     const stock = await this.stockService.create({
       ...body,
       dividends: formattedDividends,
+      results: formattedResults,
     });
 
     reply.status(201).send(stock);
