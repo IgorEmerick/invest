@@ -42,6 +42,11 @@ app.register(fastifySwaggerUi, {
 
 // APP ROUTES
 
+const cupomRouter = container.resolve<IRouter>('cupomRouter');
+app.register(cupomRouter.route.bind(cupomRouter), {
+  prefix: '/cupom',
+});
+
 const dividendRouter = container.resolve<IRouter>('dividendRouter');
 app.register(dividendRouter.route.bind(dividendRouter), {
   prefix: '/dividends',

@@ -3,6 +3,7 @@ import { UserHandler } from '../../../module/infra/http/handlers/UserHandler';
 import { StockHandler } from '../../../module/infra/http/handlers/StockHandler';
 import { DividendHandler } from '../../../module/infra/http/handlers/DividendHandler';
 import { ResultHandler } from '../../../module/infra/http/handlers/ResultHandler';
+import { CupomHandler } from '../../../module/infra/http/handlers/CupomHandler';
 
 export function registerHandlers(container: AwilixContainer): void {
   container.register(
@@ -23,5 +24,10 @@ export function registerHandlers(container: AwilixContainer): void {
   container.register(
     'resultHandler',
     asClass(ResultHandler, { lifetime: 'SINGLETON' }),
+  );
+
+  container.register(
+    'cupomHandler',
+    asClass(CupomHandler, { lifetime: 'SINGLETON' }),
   );
 }
