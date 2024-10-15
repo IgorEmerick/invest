@@ -8,8 +8,9 @@ export const createStockBodySchema = Type.Object({
   price: Type.Number(),
   type: Type.String({ pattern: '^((AÇÃO)|(FII))$' }),
   dividends: Type.Optional(Type.Array(dividendEntitySchema)),
-  leverage: Type.Number(),
+  leverage: Type.Optional(Type.Number()),
   results: Type.Optional(Type.Array(createResultBodySchema)),
+  vacancy: Type.Optional(Type.Number()),
 });
 
 export type CreateStockBodyType = Static<typeof createStockBodySchema>;

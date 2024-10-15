@@ -47,4 +47,7 @@ export class Stock {
 
   @Column({ type: 'float' })
   efficiency: number;
+
+  @Column({ type: 'float', default: 0 })
+  vacancy: number;
 }

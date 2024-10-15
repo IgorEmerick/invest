@@ -15,4 +15,5 @@ export const stockEntitySchema = Type.Object({
   leverate: Type.Number(),
   results: Type.Optional(Type.Array(resultEntitySchema)),
   efficiency: Type.Optional(Type.Number()),
+  vacancy: Type.Number(),
 });
