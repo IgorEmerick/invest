@@ -11,6 +11,7 @@ export const createStockBodySchema = Type.Object({
   leverage: Type.Optional(Type.Number()),
   results: Type.Optional(Type.Array(createResultBodySchema)),
   vacancy: Type.Optional(Type.Number()),
+  asset_value: Type.Number(),
 });
 
 export type CreateStockBodyType = Static<typeof createStockBodySchema>;

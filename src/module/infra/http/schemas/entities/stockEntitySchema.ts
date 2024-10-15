@@ -16,4 +16,5 @@ export const stockEntitySchema = Type.Object({
   results: Type.Optional(Type.Array(resultEntitySchema)),
   efficiency: Type.Optional(Type.Number()),
   vacancy: Type.Number(),
+  asset_value: Type.Number(),
 });

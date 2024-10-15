@@ -50,4 +50,7 @@ export class Stock {
 
   @Column({ type: 'float', default: 0 })
   vacancy: number;
+
+  @Column({ type: 'float' })
+  asset_value: number;
 }
