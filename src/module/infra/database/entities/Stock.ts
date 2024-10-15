@@ -37,7 +37,7 @@ export class Stock {
   dividends: Dividend[];
 
   @Column({ type: 'float' })
-  dividend_yield: number;
+  annual_dividends: number;
 
   @Column({ type: 'float', default: 0 })
   leverage: number;

@@ -3,7 +3,7 @@ import { Dividend } from '../infra/database/entities/Dividend';
 import { Stock } from '../infra/database/entities/Stock';
 import { IStockRepository } from '../infra/database/repositories/models/IStockRepository';
 import { CreateResultRequest } from '../types/CreateResultRequest';
-import { calculateDividendYield } from '../utils/calculateDividendYield';
+import { calculateAnnualDividends } from '../utils/calculateAnnualDividends';
 import { calculateEfficiency } from '../utils/calculateEfficiency';
 
 interface IRequest {
@@ -36,8 +36,8 @@ export class StockService {
 
     if (stock) throw new HttpError(400, 'Stock already exists');
 
-    const dividendYield = dividends
-      ? await calculateDividendYield({ dividends, price })
+    const annualDividends = dividends
+      ? await calculateAnnualDividends(dividends)
       : undefined;
 
     const formattedResults = results
@@ -55,7 +55,7 @@ export class StockService {
       price,
       type,
       dividends,
-      dividend_yield: dividendYield,
+      annual_dividends: annualDividends,
       leverage,
       results: formattedResults,
       efficiency,

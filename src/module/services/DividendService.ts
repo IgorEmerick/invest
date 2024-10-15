@@ -1,7 +1,7 @@
 import { HttpError } from '../../shared/errors/HttpError';
 import { IStockRepository } from '../infra/database/repositories/models/IStockRepository';
 import { CreateDividendRequest } from '../types/CreateDividendRequest';
-import { calculateDividendYield } from '../utils/calculateDividendYield';
+import { calculateAnnualDividends } from '../utils/calculateAnnualDividends';
 
 export class DividendService {
   constructor(private stockRepository: IStockRepository) {}
@@ -28,10 +28,7 @@ export class DividendService {
       Object.assign(dividend, { payment_date, reference_date, value });
     else stock.dividends.push({ payment_date, reference_date, value });
 
-    stock.dividend_yield = await calculateDividendYield({
-      dividends: stock.dividends,
-      price: stock.price,
-    });
+    stock.annual_dividends = await calculateAnnualDividends(stock.dividends);
 
     await this.stockRepository.update(stock);
   }
