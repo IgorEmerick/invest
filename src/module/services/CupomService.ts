@@ -1,3 +1,4 @@
+import { CUPOM_KEY } from '../../config/redis/keys';
 import { ICacheProvider } from '../../shared/providers/models/ICacheProvider';
 
 interface IRequest {
@@ -8,12 +9,10 @@ export class CupomService {
   constructor(private redisCacheProvider: ICacheProvider) {}
 
   async register({ cupom }: IRequest): Promise<void> {
-    const cupomKey = 'cupom';
+    const oldCupom = await this.redisCacheProvider.get(CUPOM_KEY);
 
-    const oldCupom = await this.redisCacheProvider.get(cupomKey);
+    if (oldCupom) await this.redisCacheProvider.delete(CUPOM_KEY);
 
-    if (oldCupom) await this.redisCacheProvider.delete(cupomKey);
-
-    await this.redisCacheProvider.set({ key: cupomKey, value: cupom });
+    await this.redisCacheProvider.set({ key: CUPOM_KEY, value: cupom });
   }
 }
