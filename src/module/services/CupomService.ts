@@ -15,4 +15,8 @@ export class CupomService {
 
     await this.redisCacheProvider.set({ key: CUPOM_KEY, value: cupom });
   }
+
+  async get(): Promise<number> {
+    return this.redisCacheProvider.get<number>(CUPOM_KEY);
+  }
 }

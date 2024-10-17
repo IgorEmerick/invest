@@ -10,6 +10,7 @@ import {
   RegisterCupomBodyType,
 } from '../schemas/bodies/registerCupomBodySchema';
 import { ensureAuthentication } from '../../../../shared/infra/http/middlewares/ensureAuthentication';
+import { getCupomResponseSchema } from '../schemas/responses/getCupomResponseSchema';
 
 export class CupomRouter implements IRouter {
   constructor(private cupomHandler: CupomHandler) {}
@@ -26,6 +27,19 @@ export class CupomRouter implements IRouter {
         preHandler: [ensureAuthentication],
       },
       this.cupomHandler.register.bind(this.cupomHandler),
+    );
+
+    app.get<{ Headers: AuthorizationHeaderType }>(
+      '/',
+      {
+        schema: {
+          summary: 'Get cupom.',
+          headers: authorizationHeaderSchema,
+          response: getCupomResponseSchema,
+        },
+        preHandler: [ensureAuthentication],
+      },
+      this.cupomHandler.get.bind(this.cupomHandler),
     );
   }
 }

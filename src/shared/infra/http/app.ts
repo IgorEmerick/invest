@@ -36,7 +36,7 @@ app.register(fastifySwagger, {
 });
 
 app.register(fastifySwaggerUi, {
-  routePrefix: '/documentation',
+  routePrefix: '/doc',
   staticCSP: true,
 });
 
